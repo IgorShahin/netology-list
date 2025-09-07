@@ -9,7 +9,9 @@ public class InMemoryTodoService implements TodoService {
 
     @Override
     public boolean add(String text) {
-        if (items.contains(text)) return false;
+        if (items.contains(text)) {
+            return false;
+        }
         items.add(text);
         return true;
     }
@@ -22,7 +24,9 @@ public class InMemoryTodoService implements TodoService {
     @Override
     public boolean deleteByNumber(int oneBasedIndex) {
         int idx = oneBasedIndex - 1;
-        if (idx < 0 || idx >= items.size()) return false;
+        if (idx < 0 || idx >= items.size()) {
+            return false;
+        }
         items.remove(idx);
         return true;
     }
@@ -30,5 +34,15 @@ public class InMemoryTodoService implements TodoService {
     @Override
     public boolean deleteByExactText(String text) {
         return items.remove(text);
+    }
+
+    @Override
+    public int deleteByKeyword(String keyword) {
+        if (keyword == null || keyword.isEmpty()) {
+            return 0;
+        }
+        int before = items.size();
+        items.removeIf(s -> s.contains(keyword));
+        return before - items.size();
     }
 }

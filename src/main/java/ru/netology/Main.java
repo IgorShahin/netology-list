@@ -58,6 +58,17 @@ public class Main {
                     System.out.println(ok ? "Удалено!" : "Дело с таким текстом не найдено.");
                     printList(service);
                     break;
+                case 5:
+                    System.out.print("\nВведите ключевое слово для удаления: ");
+                    String keyword = scanner.nextLine();
+                    int removed = service.deleteByKeyword(keyword);
+                    if (removed > 0) {
+                        System.out.println("Удалено: " + removed);
+                    } else {
+                        System.out.println("Задач с таким словом не найдено.");
+                    }
+                    printList(service);
+                    break;
                 default:
                     System.out.println("Неизвестная операция.");
             }
@@ -72,6 +83,7 @@ public class Main {
         System.out.println("2. Показать дела");
         System.out.println("3. Удалить дело по номеру");
         System.out.println("4. Удалить дело по названию");
+        System.out.println("5. Удалить дела по ключевому слову");
     }
 
     private static void printList(TodoService service) {

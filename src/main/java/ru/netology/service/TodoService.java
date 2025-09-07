@@ -10,4 +10,6 @@ public interface TodoService {
     boolean deleteByNumber(int oneBasedIndex);
 
     boolean deleteByExactText(String text);
+
+    int deleteByKeyword(String keyword);
 }
